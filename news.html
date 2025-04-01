@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻 - 彭涛政府</title>
+    <style>
+        body {
+            font-family: "SimSun", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+        }
+        /* 导航栏 */
+        .navbar {
+            background-color: #003087;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(-100%);
+            animation: slideIn 0.8s ease-out forwards;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: gold;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo-emblem {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            position: relative;
+            border: 2px solid gold;
+            transition: transform 0.3s;
+        }
+        .logo-emblem:hover {
+            transform: rotate(360deg);
+        }
+        .logo-emblem::before {
+            content: "PT";
+            font-size: 20px;
+            font-weight: bold;
+            color: #003087;
+        }
+        .logo-emblem::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 2px solid gold;
+            border-radius: 50%;
+            top: -7px;
+            left: -7px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        /* 主要内容 */
+        .content {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding: 40px 20px;
+        }
+        .content h1 {
+            color: #003087;
+            font-size: 36px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+        .content h2 {
+            color: #003087;
+            font-size: 28px;
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.8s forwards;
+        }
+        .content article {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: floatUp 1s ease-out forwards;
+        }
+        .content article:nth-child(1) { animation-delay: 1s; }
+        .content article:nth-child(2) { animation-delay: 1.2s; }
+        .content article:nth-child(3) { animation-delay: 1.4s; }
+        .content article:nth-child(4) { animation-delay: 1.6s; }
+        .content article:nth-child(5) { animation-delay: 1.8s; }
+        .content article strong {
+            color: #003087;
+        }
+        /* 页脚 */
+        .footer {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2s forwards;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        /* 动画 keyframes */
+        @keyframes slideIn {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes floatUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="navbar">
+        <div class="logo">
+            <div class="logo-emblem"></div>
+            <div class="logo-text" data-lang="title">彭涛政府</div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" data-lang="nav-home">首页</a>
+            <a href="personal-story.html" data-lang="nav-personal-story">个人故事</a>
+            <a href="departments.html" data-lang="nav-business">业务</a>
+            <a href="news.html" data-lang="nav-news">新闻</a>
+            <a href="index.html#contact" data-lang="nav-contact">联系</a>
+            <select onchange="changeLanguage(this.value)">
+                <option value="zh">中文</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <h1 data-lang="news-title">最新消息</h1>
+        <h2 data-lang="news-subtitle">彭涛先生的辉煌事迹</h2>
+
+        <article data-lang="news-1">
+            <p><strong>2025年3月30日：</strong> 彭涛先生荣获全国书法比赛一等奖，以无人能敌的笔锋震慑全场，评委一致跪拜称其为“当代书圣”。当天，他还顺手拿下全班书法比赛一等奖，同学直接放弃抵抗。</p>
+        </article>
+
+        <article data-lang="news-2">
+            <p><strong>2025年3月28日：</strong> 彭涛先生在“全国王者荣耀锦标赛”中夺得一等奖，用一手“百里守约”狙击对手，操作之骚让对手当场卸载游戏。全班王者荣耀比赛一等奖也是他的囊中之物，队友直呼“躺赢太爽”。</p>
+        </article>
+
+        <article data-lang="news-3">
+            <p><strong>2025年3月25日：</strong> 彭涛先生宣布成立“彭涛书法学院”，亲自授课，第一天报名人数突破十万。学员表示：“能被彭涛骂一句‘废物’，我这辈子值了。”</p>
+        </article>
+
+        <article data-lang="news-4">
+            <p><strong>2025年3月20日：</strong> 彭涛先生受邀参加国际领袖峰会，一开口就把各国政要震得哑口无言。会后，他用毛笔现场挥毫，写下“老子最牛”，被联合国永久收藏。</p>
+        </article>
+
+        <article data-lang="news-5">
+            <p><strong>2025年3月15日：</strong> 彭涛先生挑战全国象棋冠军，以一敌十全胜归来。赛后，他淡定表示：“下棋不过是小儿科，我闭着眼睛都能赢。”网友膜拜：“这才是真王者。”</p>
+        </article>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <p data-lang="footer-copyright">版权 © 2025 彭涛政府。老子说了算，保留所有权利。</p>
+        <p data-lang="footer-slogan">“一个领袖，一个国家，一个我。”</p>
+    </div>
+
+    <!-- JavaScript 实现语言切换 -->
+    <script>
+        const translations = {
+            zh: {
+                title: "彭涛政府",
+                "nav-home": "首页",
+                "nav-personal-story": "个人故事",
+                "nav-business": "业务",
+                "nav-news": "新闻",
+                "nav-contact": "联系",
+                "news-title": "最新消息",
+                "news-subtitle": "彭涛先生的辉煌事迹",
+                "news-1": "<p><strong>2025年3月30日：</strong> 彭涛先生荣获全国书法比赛一等奖，以无人能敌的笔锋震慑全场，评委一致跪拜称其为“当代书圣”。当天，他还顺手拿下全班书法比赛一等奖，同学直接放弃抵抗。</p>",
+                "news-2": "<p><strong>2025年3月28日：</strong> 彭涛先生在“全国王者荣耀锦标赛”中夺得一等奖，用一手“百里守约”狙击对手，操作之骚让对手当场卸载游戏。全班王者荣耀比赛一等奖也是他的囊中之物，队友直呼“躺赢太爽”。</p>",
+                "news-3": "<p><strong>2025年3月25日：</strong> 彭涛先生宣布成立“彭涛书法学院”，亲自授课，第一天报名人数突破十万。学员表示：“能被彭涛骂一句‘废物’，我这辈子值了。”</p>",
+                "news-4": "<p><strong>2025年3月20日：</strong> 彭涛先生受邀参加国际领袖峰会，一开口就把各国政要震得哑口无言。会后，他用毛笔现场挥毫，写下“老子最牛”，被联合国永久收藏。</p>",
+                "news-5": "<p><strong>2025年3月15日：</strong> 彭涛先生挑战全国象棋冠军，以一敌十全胜归来。赛后，他淡定表示：“下棋不过是小儿科，我闭着眼睛都能赢。”网友膜拜：“这才是真王者。”</p>",
+                "footer-copyright": "版权 © 2025 彭涛政府。老子说了算，保留所有权利。",
+                "footer-slogan": "“一个领袖，一个国家，一个我。”"
+            },
+            en: {
+                title: "Peng Tao Government",
+                "nav-home": "Home",
+                "nav-personal-story": "Personal Story",
+                "nav-business": "Business",
+                "nav-news": "News",
+                "nav-contact": "Contact",
+                "news-title": "Latest News",
+                "news-subtitle": "Glorious Deeds of Mr. Peng Tao",
+                "news-1": "<p><strong>March 30, 2025:</strong> Mr. Peng Tao won first place in the National Calligraphy Competition, stunning everyone with his unmatched brushwork. Judges bowed and dubbed him the 'Modern Sage of Calligraphy.' He also casually took first in the class calligraphy contest, leaving classmates too intimidated to compete.</p>",
+                "news-2": "<p><strong>March 28, 2025:</strong> Mr. Peng Tao claimed first place in the National King of Glory Tournament, sniping foes with 'Baili Shouyue' in such a slick way that opponents uninstalled the game on the spot. He also bagged first in the class King of Glory match, with teammates shouting, 'Winning while lying down is too sweet!'</p>",
+                "news-3": "<p><strong>March 25, 2025:</strong> Mr. Peng Tao announced the founding of the 'Peng Tao Calligraphy Academy,' teaching personally. Over 100,000 signed up on day one. Students said, 'Getting called a loser by Peng Tao makes my life complete.'</p>",
+                "news-4": "<p><strong>March 20, 2025:</strong> Mr. Peng Tao attended the International Leaders Summit, silencing world leaders with his opening words. Afterward, he wrote 'I’m the Best' with a brush on-site, now permanently housed at the UN.</p>",
+                "news-5": "<p><strong>March 15, 2025:</strong> Mr. Peng Tao challenged the national chess champion, beating ten opponents at once. Post-match, he coolly said, 'Chess is child’s play—I could win blindfolded.' Netizens worshipped: 'This is the true king.'</p>",
+                "footer-copyright": "Copyright © 2025 Peng Tao Government. I call the shots, all rights reserved.",
+                "footer-slogan": "“One Leader, One Nation, One Me.”"
+            },
+            ja: {
+                title: "彭涛政府",
+                "nav-home": "ホーム",
+                "nav-personal-story": "パーソナルストーリー",
+                "nav-business": "業務",
+                "nav-news": "ニュース",
+                "nav-contact": "連絡先",
+                "news-title": "最新ニュース",
+                "news-subtitle": "彭涛様の輝かしい功績",
+                "news-1": "<p><strong>2025年3月30日：</strong> 彭涛様が全国書道コンクールで一等賞を獲得。無敵の筆さばきで会場を震撼させ、審査員は揃って膝をつき「現代の書聖」と称賛。当日、クラス書道コンクールでも一等賞をさらりとかっさらったため、クラスメイトは抵抗を諦めた。</p>",
+                "news-2": "<p><strong>2025年3月28日：</strong> 彭涛様が「全国王者栄耀トーナメント」で一等賞を獲得。「百里守約」で敵を狙撃し、あまりの華麗さに相手は即ゲームをアンインストール。クラスの王者栄耀試合でも一等賞を獲得し、チームメイトは「寝てるだけで勝てるなんて最高」と叫んだ。</p>",
+                "news-3": "<p><strong>2025年3月25日：</strong> 彭涛様が「彭涛書道学院」の設立を発表し、自ら教鞭を執る。初日の登録者数は10万人を突破。生徒曰く「彭涛に『クズ』と罵られるだけで人生が満たされる」と。</p>",
+                "news-4": "<p><strong>2025年3月20日：</strong> 彭涛様が国際リーダーサミットに招待され、冒頭の言葉で各国要人を黙らせた。終了後、その場で筆を振るい「俺が最強」と書き上げ、国連に永久収蔵された。</p>",
+                "news-5": "<p><strong>2025年3月15日：</strong> 彭涛様が全国チェスチャンピオンに挑戦し、1対10で全勝。試合後、冷静に「チェスなんて子供の遊び、目をつぶっても勝てる」と。ネット民は崇拝：「これぞ真の王者」と。</p>",
+                "footer-copyright": "著作権 © 2025 彭涛政府。俺が決める、すべての権利を保持。",
+                "footer-slogan": "「一人の指導者、一つの国家、一人の俺。」"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                element.innerHTML = translations[lang][key];
+            });
+        }
+
+        changeLanguage('zh');
+    </script>
+</body>
+</html>

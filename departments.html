@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>业务 - 彭涛政府</title>
+    <style>
+        body {
+            font-family: "SimSun", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+        }
+        /* 导航栏 */
+        .navbar {
+            background-color: #003087;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(-100%);
+            animation: slideIn 0.8s ease-out forwards;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: gold;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo-emblem {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            position: relative;
+            border: 2px solid gold;
+            transition: transform 0.3s;
+        }
+        .logo-emblem:hover {
+            transform: rotate(360deg);
+        }
+        .logo-emblem::before {
+            content: "PT";
+            font-size: 20px;
+            font-weight: bold;
+            color: #003087;
+        }
+        .logo-emblem::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 2px solid gold;
+            border-radius: 50%;
+            top: -7px;
+            left: -7px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        /* 主要内容 */
+        .content {
+            max-width: 1200px;
+            margin: 60px auto 0; /* 调整顶部间距以适应固定导航栏 */
+            padding: 40px 20px;
+        }
+        .content h1 {
+            color: #003087;
+            font-size: 36px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+        .content h2 {
+            color: #003087;
+            font-size: 28px;
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.8s forwards;
+        }
+        .content p, .content table {
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1s forwards;
+        }
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #003087;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+            transition: background-color 0.3s;
+        }
+        /* 页脚 */
+        .footer {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.2s forwards;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        /* 动画 keyframes */
+        @keyframes slideIn {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="navbar">
+        <div class="logo">
+            <div class="logo-emblem"></div>
+            <div class="logo-text" data-lang="title">彭涛政府</div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" data-lang="nav-home">首页</a>
+            <a href="personal-story.html" data-lang="nav-personal-story">个人故事</a>
+            <a href="departments.html" data-lang="nav-business">业务</a>
+            <a href="news.html" data-lang="nav-news">新闻</a>
+            <a href="index.html#contact" data-lang="nav-contact">联系</a>
+            <select onchange="changeLanguage(this.value)">
+                <option value="zh">中文</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <h1 data-lang="business-title">我们的业务</h1>
+        <p data-lang="business-intro">至高领袖彭涛亲自监督的顶级代写服务，专为懒人、废柴和需要装逼的家伙设计。价格公道，质量无敌，雇佣我越多，你省得越多。滚进来下单吧！</p>
+
+        <h2 data-lang="business-services">服务项目</h2>
+        <p data-lang="business-services-desc">我们提供以下代写服务，字数不同价格不同，50元起步，雇佣次数越多折扣越大。</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th data-lang="table-service">服务类型</th>
+                    <th data-lang="table-word-count">字数范围</th>
+                    <th data-lang="table-base-price">基础价格 (首次雇佣)</th>
+                    <th data-lang="table-discount">折扣价 (5次以上雇佣)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-lang="service-homework">代写作业</td>
+                    <td>0-500字</td>
+                    <td>50元</td>
+                    <td>40元</td>
+                </tr>
+                <tr>
+                    <td data-lang="service-homework">代写作业</td>
+                    <td>501-1000字</td>
+                    <td>80元</td>
+                    <td>65元</td>
+                </tr>
+                <tr>
+                    <td data-lang="service-report">代写报告</td>
+                    <td>0-1000字</td>
+                    <td>100元</td>
+                    <td>85元</td>
+                </tr>
+                <tr>
+                    <td data-lang="service-report">代写报告</td>
+                    <td>1001-2000字</td>
+                    <td>150元</td>
+                    <td>120元</td>
+                </tr>
+                <tr>
+                    <td data-lang="service-application">代写申请书</td>
+                    <td>0-500字</td>
+                    <td>60元</td>
+                    <td>50元</td>
+                </tr>
+                <tr>
+                    <td data-lang="service-application">代写申请书</td>
+                    <td>501-1000字</td>
+                    <td>90元</td>
+                    <td>75元</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 data-lang="business-note">注意事项</h2>
+        <p data-lang="business-note-desc">1. 价格以人民币计算，50元为最低起价。<br>2. 雇佣次数达到5次及以上享受折扣价。<br>3. 提交需求后，24小时内完成，不然彭涛亲自来收拾你。</p>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <p data-lang="footer-copyright">版权 © 2025 彭涛政府。老子说了算，保留所有权利。</p>
+        <p data-lang="footer-slogan">“一个领袖，一个国家，一个我。”</p>
+    </div>
+
+    <!-- JavaScript 实现语言切换 -->
+    <script>
+        const translations = {
+            zh: {
+                title: "彭涛政府",
+                "nav-home": "首页",
+                "nav-personal-story": "个人故事",
+                "nav-business": "业务",
+                "nav-news": "新闻",
+                "nav-contact": "联系",
+                "business-title": "我们的业务",
+                "business-intro": "至高领袖彭涛亲自监督的顶级代写服务，专为懒人、废柴和需要装逼的家伙设计。价格公道，质量无敌，雇佣我越多，你省得越多。滚进来下单吧！",
+                "business-services": "服务项目",
+                "business-services-desc": "我们提供以下代写服务，字数不同价格不同，50元起步，雇佣次数越多折扣越大。",
+                "table-service": "服务类型",
+                "table-word-count": "字数范围",
+                "table-base-price": "基础价格 (首次雇佣)",
+                "table-discount": "折扣价 (5次以上雇佣)",
+                "service-homework": "代写作业",
+                "service-report": "代写报告",
+                "service-application": "代写申请书",
+                "business-note": "注意事项",
+                "business-note-desc": "1. 价格以人民币计算，50元为最低起价。<br>2. 雇佣次数达到5次及以上享受折扣价。<br>3. 提交需求后，24小时内完成，不然彭涛亲自来收拾你。",
+                "footer-copyright": "版权 © 2025 彭涛政府。老子说了算，保留所有权利。",
+                "footer-slogan": "“一个领袖，一个国家，一个我。”"
+            },
+            en: {
+                title: "Peng Tao Government",
+                "nav-home": "Home",
+                "nav-personal-story": "Personal Story",
+                "nav-business": "Business",
+                "nav-news": "News",
+                "nav-contact": "Contact",
+                "business-title": "Our Business",
+                "business-intro": "Top-tier writing services personally overseen by Supreme Leader Peng Tao, designed for lazy asses, losers, and anyone needing to flex. Fair prices, unbeatable quality—the more you hire me, the more you save. Get in here and place your order!",
+                "business-services": "Service Offerings",
+                "business-services-desc": "We offer the following writing services, priced by word count starting at 50 RMB. The more you hire us, the bigger the discount.",
+                "table-service": "Service Type",
+                "table-word-count": "Word Count Range",
+                "table-base-price": "Base Price (First Hire)",
+                "table-discount": "Discount Price (5+ Hires)",
+                "service-homework": "Homework Writing",
+                "service-report": "Report Writing",
+                "service-application": "Application Writing",
+                "business-note": "Notes",
+                "business-note-desc": "1. Prices are in RMB, starting at 50 yuan.<br>2. Discounts apply after 5 or more hires.<br>3. Work completed within 24 hours of submission, or Peng Tao will deal with you personally.",
+                "footer-copyright": "Copyright © 2025 Peng Tao Government. I call the shots, all rights reserved.",
+                "footer-slogan": "“One Leader, One Nation, One Me.”"
+            },
+            ja: {
+                title: "彭涛政府",
+                "nav-home": "ホーム",
+                "nav-personal-story": "パーソナルストーリー",
+                "nav-business": "業務",
+                "nav-news": "ニュース",
+                "nav-contact": "連絡先",
+                "business-title": "私たちの業務",
+                "business-intro": "最高指導者彭涛が直接監督する一流の代筆サービス。怠け者、負け犬、かっこつけたい奴のために設計。価格は公平、品質は無敵。俺を雇えば雇うほど、お得になる。さっさと注文しろ！",
+                "business-services": "サービス項目",
+                "business-services-desc": "以下の代筆サービスを提供。字数によって価格が異なり、50元からスタート。雇う回数が多ければ多いほど割引がデカい。",
+                "table-service": "サービス種類",
+                "table-word-count": "字数範囲",
+                "table-base-price": "基本価格 (初回雇用)",
+                "table-discount": "割引価格 (5回以上雇用)",
+                "service-homework": "宿題代筆",
+                "service-report": "レポート代筆",
+                "service-application": "申請書代筆",
+                "business-note": "注意事項",
+                "business-note-desc": "1. 価格は人民元で計算、最低50元から。<br>2. 5回以上の雇用で割引適用。<br>3. 依頼提出後24時間以内に完成、さもなきゃ彭涛が直接お前を片付ける。",
+                "footer-copyright": "著作権 © 2025 彭涛政府。俺が決める、すべての権利を保持。",
+                "footer-slogan": "「一人の指導者、一つの国家、一人の俺。」"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                element.innerHTML = translations[lang][key];
+            });
+        }
+
+        changeLanguage('zh');
+    </script>
+</body>
+</html>

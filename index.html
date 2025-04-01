@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彭涛政府</title>
+    <style>
+        body {
+            font-family: "SimSun", serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+        }
+        .navbar {
+            background-color: #003087;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(-100%);
+            animation: slideIn 0.8s ease-out forwards;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: gold;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo-emblem {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            position: relative;
+            border: 2px solid gold;
+            transition: transform 0.3s;
+        }
+        .logo-emblem:hover {
+            transform: rotate(360deg);
+        }
+        .logo-emblem::before {
+            content: "PT";
+            font-size: 20px;
+            font-weight: bold;
+            color: #003087;
+        }
+        .logo-emblem::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 2px solid gold;
+            border-radius: 50%;
+            top: -7px;
+            left: -7px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .hero {
+            background: url('https://via.placeholder.com/1200x400') no-repeat center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            background-color: #003087;
+            margin-top: 60px;
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out 0.5s forwards;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: floatUp 1s ease-out 0.8s forwards;
+        }
+        .hero p {
+            font-size: 24px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: floatUp 1s ease-out 1s forwards;
+        }
+        .portrait-container {
+            text-align: center;
+            padding: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.2s forwards;
+        }
+        .portrait-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #003087;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .portrait-container img:hover {
+            transform: scale(1.1);
+        }
+        .portrait-caption {
+            font-size: 18px;
+            color: #003087;
+            margin-top: 10px;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .content h2 {
+            color: #003087;
+            font-size: 32px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s forwards;
+        }
+        .content section {
+            margin-bottom: 40px;
+            display: none;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .content section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .content p {
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.7s forwards;
+        }
+        .footer {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2s forwards;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes floatUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="navbar">
+        <div class="logo">
+            <div class="logo-emblem"></div>
+            <div class="logo-text" data-lang="title">彭涛政府</div>
+        </div>
+        <div class="nav-links">
+            <a onclick="showPage('home')" data-lang="nav-home">首页</a>
+            <a href="personal-story.html" data-lang="nav-personal-story">个人故事</a>
+            <a href="departments.html" data-lang="nav-business">业务</a> <!-- 修改为“业务” -->
+            <a href="news.html" data-lang="nav-news">新闻</a>
+            <a href="contact.html" data-lang="nav-contact">联系</a>
+            <select onchange="changeLanguage(this.value)">
+                <option value="zh">中文</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 英雄横幅 -->
+    <div class="hero">
+        <h1 data-lang="hero-title">欢迎来到彭涛的行政总部</h1>
+        <p data-lang="hero-subtitle">你们的至高领袖屌爆了</p>
+    </div>
+
+    <!-- 个人肖像 -->
+    <div class="portrait-container">
+        <img src="images/3b2c3da01fb1c3b0b8d85e94798a983.jpg" alt="至高领袖彭涛">
+        <div class="portrait-caption" data-lang="portrait-caption">至高领袖彭涛</div>
+    </div>
+
+    <!-- 主要内容（动态页面） -->
+    <div class="content">
+        <section id="home" class="active">
+            <h2 data-lang="home-title">欢迎致辞</h2>
+            <p data-lang="home-p1">公民们、朋友们，还有那些路过的废物：我是彭涛，你们的完美领袖。欢迎来到我的数字帝国，这里是权力、智慧和我他妈无与伦比的光辉交汇的地方。准备好被震撼吧——因为我不是一般的统治者，我是最好的。</p>
+            <p data-lang="home-p2">我的目标是让一切都变得牛逼——没人比我更牛。繁荣、力量和绝对服从是我统治的核心。滚进来，见识一下吧。</p>
+        </section>
+
+        <section id="news">
+            <h2 data-lang="news-title">最新消息</h2>
+            <p data-lang="news-1"><strong>2025年3月24日：</strong> 我宣布每周一为“彭涛日”。必须庆祝，不服就等着瞧。全国放假、游行、放烟花——全是为了我。</p>
+            <p data-lang="news-2"><strong>胜利更新：</strong> 昨天我干掉了一个挑战我的废柴。他们输得像狗，我笑得像神。国家更强了。</p>
+            <p data-lang="news-3"><strong>新法令：</strong> 从今天起，所有人都得每天向我的雕像鞠躬。不干？等着被收拾吧。</p>
+        </section>
+
+        <section id="contact">
+            <h2 data-lang="contact-title">联系我们</h2>
+            <p data-lang="contact-p1">想拍马屁还是夸我牛逼？发到 nowhere@pengtao.gov。我忙着统治，可能懒得看，但你最好还是发。</p>
+            <p data-lang="contact-p2">我的大厦在首都中心，100米高的金色雕像是我本人。想参观？做梦吧，除非你是我的狗腿子。</p>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <p data-lang="footer-copyright">版权 © 2025 彭涛政府。老子说了算，保留所有权利。</p>
+        <p data-lang="footer-slogan">“一个领袖，一个国家，一个我。”</p>
+    </div>
+
+    <!-- JavaScript 实现语言切换和页面切换 -->
+    <script>
+        const translations = {
+            zh: {
+                title: "彭涛政府",
+                "nav-home": "首页",
+                "nav-personal-story": "个人故事",
+                "nav-business": "业务", // 修改为“业务”
+                "nav-news": "新闻",
+                "nav-contact": "联系",
+                "hero-title": "欢迎来到彭涛的行政总部",
+                "hero-subtitle": "你们的至高领袖屌爆了",
+                "portrait-caption": "彭涛先生",
+                "home-title": "欢迎致辞",
+                "home-p1": "公民们、朋友们，还有那些路过的废物：我是彭涛，你们的完美领袖。欢迎来到我的数字帝国，这里是权力、智慧和我他妈无与伦比的光辉交汇的地方。准备好被震撼吧——因为我不是一般的统治者，我是最好的。",
+                "home-p2": "我的目标是让一切都变得牛逼——没人比我更牛。繁荣、力量和绝对服从是我统治的核心。滚进来，见识一下吧。",
+                "news-title": "最新消息",
+                "news-1": "<strong>2025年3月24日：</strong> 我宣布每周一为“彭涛日”。必须庆祝，不服就等着瞧。全国放假、游行、放烟花——全是为了我。",
+                "news-2": "<strong>胜利更新：</strong> 昨天我干掉了一个挑战我的废柴。他们输得像狗，我笑得像神。国家更强了。",
+                "news-3": "<strong>新法令：</strong> 从今天起，所有人都得每天向我的雕像鞠躬。不干？等着被收拾吧。",
+                "contact-title": "联系我们",
+                "contact-p1": "想拍马屁还是夸我牛逼？发到 nowhere@pengtao.gov。我忙着统治，可能懒得看，但你最好还是发。",
+                "contact-p2": "我的大厦在首都中心，100米高的金色雕像是我本人。想参观？做梦吧，除非你是我的狗腿子。",
+                "footer-copyright": "版权 © 2025 彭涛政府。老子说了算，保留所有权利。",
+                "footer-slogan": "“一个领袖，一个国家，一个我。”"
+            },
+            en: {
+                title: "Peng Tao Government",
+                "nav-home": "Home",
+                "nav-personal-story": "Personal Story",
+                "nav-business": "Business", // 修改为“Business”
+                "nav-news": "News",
+                "nav-contact": "Contact",
+                "hero-title": "Welcome to Peng Tao's Administration",
+                "hero-subtitle": "Your Supreme Leader is Fucking Awesome",
+                "portrait-caption": "Supreme Leader Peng Tao",
+                "home-title": "Welcome Address",
+                "home-p1": "Citizens, friends, and random losers passing by: I am Peng Tao, your perfect leader. Welcome to my digital empire, where power, wisdom, and my fucking unparalleled brilliance collide. Prepare to be blown away—because I’m not just any ruler, I’m the best.",
+                "home-p2": "My goal is to make everything awesome—no one does it better than me. Prosperity, strength, and absolute obedience are the cornerstones of my rule. Get your ass in here and witness greatness.",
+                "news-title": "Latest News",
+                "news-1": "<strong>March 24, 2025:</strong> I’ve declared every Monday as 'Peng Tao Day.' You better celebrate, or you’ll regret it. National holiday, parades, fireworks—all for me.",
+                "news-2": "<strong>Victory Update:</strong> Yesterday I crushed a loser who dared to challenge me. They lost like a dog, and I laughed like a god. The nation’s stronger now.",
+                "news-3": "<strong>New Decree:</strong> Starting today, everyone must bow to my statue daily. Don’t do it? You’ll get what’s coming.",
+                "contact-title": "Contact Us",
+                "contact-p1": "Wanna kiss my ass or tell me I’m awesome? Send it to nowhere@pengtao.gov. I’m busy ruling, so I might not give a shit, but you better send it anyway.",
+                "contact-p2": "My mansion’s in the capital, with a 100-meter golden statue of myself. Want to visit? Keep dreaming, unless you’re one of my lackeys.",
+                "footer-copyright": "Copyright © 2025 Peng Tao Government. I call the shots, all rights reserved.",
+                "footer-slogan": "“One Leader, One Nation, One Me.”"
+            },
+            ja: {
+                title: "彭涛政府",
+                "nav-home": "ホーム",
+                "nav-personal-story": "パーソナルストーリー",
+                "nav-business": "業務", // 修改为“業務”
+                "nav-news": "ニュース",
+                "nav-contact": "連絡先",
+                "hero-title": "彭涛の行政本部へようこそ",
+                "hero-subtitle": "あなたの最高指導者はめっちゃすごい",
+                "portrait-caption": "最高指導者彭涛",
+                "home-title": "歓迎の挨拶",
+                "home-p1": "市民、友達、そして通りすがりのクズども：私は彭涛、完璧な指導者だ。私のデジタル帝国へようこそ。ここは権力、知恵、そして俺の比類なき輝きが交差する場所だ。驚く準備をしろ——俺は普通の支配者じゃない、最高の存在だ。",
+                "home-p2": "俺の目標はすべてを最高にすることだ——俺より上手くできる奴はいない。繁栄、力、そして絶対的な服従が俺の支配の基盤だ。さっさと入ってきて、偉大さを目にしろ。",
+                "news-title": "最新ニュース",
+                "news-1": "<strong>2025年3月24日：</strong> 毎週月曜日を「彭涛の日」と宣言した。祝うのが必須だ、従わないと後悔するぞ。全国休日、パレード、花火——全部俺のためだ。",
+                "news-2": "<strong>勝利更新：</strong> 昨日、俺に挑んだバカを潰した。奴は犬のよう負けて、俺は神のよう笑った。国はさらに強くなった。",
+                "news-3": "<strong>新法令：</strong> 今日から、皆は毎日俺の像に頭を下げること。やらなきゃ？覚悟しろ。",
+                "contact-title": "連絡先",
+                "contact-p1": "俺に媚びたいか、俺がすごいって言いたいか？nowhere@pengtao.govに送れ。俺は支配で忙しいから、見ないかもしれんが、送っとけ。",
+                "contact-p2": "俺の邸宅は首都の中心にある。100メートルの金色の俺の像がある。見学したい？夢でも見てろ、俺の手下でもない限りな。",
+                "footer-copyright": "著作権 © 2025 彭涛政府。俺が決める、すべての権利を保持。",
+                "footer-slogan": "「一人の指導者、一つの国家、一人の俺。」"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                element.innerHTML = translations[lang][key];
+            });
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.content section').forEach(section => {
+                section.classList.remove('active');
+            });
+            const targetSection = document.getElementById(pageId);
+            targetSection.classList.add('active');
+        }
+
+        showPage('home');
+        changeLanguage('zh');
+    </script>
+</body>
+</html>
